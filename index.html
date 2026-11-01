@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Julian // @julianwxshere | Honest Daily Learning Journey</title>
+    <meta name="description" content="Documenting an honest, daily learning journey from scratch. Exploring trading, marketing, and human psychology on TikTok & Instagram.">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        obsidian: {
+                            DEFAULT: '#0a0709',
+                            card: '#120d11',
+                            border: '#2a1a24'
+                        },
+                        burgundy: {
+                            light: '#a31c3f',
+                            DEFAULT: '#800020',
+                            dark: '#581845',
+                            wine: '#722F37',
+                            glow: 'rgba(128, 0, 32, 0.4)'
+                        },
+                        rose: {
+                            accent: '#e27396',
+                            gold: '#f4acb7'
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Plus Jakarta Sans', 'sans-serif'],
+                        heading: ['Outfit', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <!-- Alpine.js CDN -->
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+    
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body class="bg-[#0a0709] text-gray-200 font-sans selection:bg-burgundy selection:text-white relative overflow-x-hidden" x-data="{ mobileMenuOpen: false }">
+
+    <!-- Ambient Background Gradients & Particle Overlay -->
+    <div class="fixed inset-0 pointer-events-none z-0 overflow-hidden">
+        <div class="absolute -top-40 -left-40 w-96 h-96 bg-burgundy-wine/20 rounded-full blur-[140px] animate-pulse-slow"></div>
+        <div class="absolute top-1/3 -right-40 w-[30rem] h-[30rem] bg-burgundy/25 rounded-full blur-[160px] animate-pulse-slow delay-1000"></div>
+        <div class="absolute -bottom-40 left-1/3 w-96 h-96 bg-burgundy-dark/30 rounded-full blur-[150px]"></div>
+        <div id="particles-container" class="absolute inset-0 opacity-40"></div>
+        <div class="absolute inset-0 bg-[radial-gradient(rgba(255,255,255,0.03)_1px,transparent_1px)] [background-size:32px_32px] opacity-70"></div>
+    </div>
+
+    <!-- Header / Navbar -->
+    <header class="sticky top-0 z-50 backdrop-blur-md bg-[#0a0709]/75 border-b border-burgundy-border/60 transition-all duration-300">
+        <div class="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between relative">
+            <!-- Brand / Handle -->
+            <a href="#" class="flex items-center gap-3 group z-10">
+                <div class="relative flex items-center justify-center">
+                    <span class="w-3 h-3 rounded-full bg-emerald-500 animate-ping absolute inset-0 opacity-75"></span>
+                    <span class="w-2.5 h-2.5 rounded-full bg-emerald-400 relative"></span>
+                </div>
+                <div class="font-heading font-bold text-lg tracking-tight group-hover:text-rose-gold transition-colors">
+                    Julian 
+                </div>
+            </a>
+
+            <!-- Desktop Nav Links (Centered) -->
+            <nav class="hidden md:flex items-center gap-8 text-sm font-medium text-gray-300 absolute left-1/2 -translate-x-1/2">
+                <a href="#about" class="hover:text-rose-gold transition-colors py-1 relative after:absolute after:bottom-0 after:left-0 after:w-0 after:h-[2px] after:bg-burgundy-light hover:after:w-full after:transition-all">About Me</a>
+                <a href="#exploring" class="hover:text-rose-gold transition-colors py-1 relative after:absolute after:bottom-0 after:left-0 after:w-0 after:h-[2px] after:bg-burgundy-light hover:after:w-full after:transition-all">What I'm Learning</a>
+                <a href="#connect" class="hover:text-rose-gold transition-colors py-1 relative after:absolute after:bottom-0 after:left-0 after:w-0 after:h-[2px] after:bg-burgundy-light hover:after:w-full after:transition-all">Connect</a>
+            </nav>
+
+            <!-- CTA Button -->
+            <div class="hidden md:flex items-center gap-3 z-10">
+                <a href="#connect" class="px-4 py-2 text-xs font-semibold rounded-full bg-gradient-to-r from-burgundy via-burgundy-wine to-burgundy-dark hover:from-burgundy-light hover:to-burgundy border border-burgundy-light/40 shadow-[0_0_20px_rgba(128,0,32,0.35)] hover:shadow-[0_0_25px_rgba(226,115,150,0.5)] transition-all duration-300 text-white flex items-center gap-2">
+                    <i data-lucide="sparkles" class="w-3.5 h-3.5"></i>
+                    <span>Follow Along</span>
+                </a>
+            </div>
+
+            <!-- Mobile Menu Toggle -->
+            <button @click="mobileMenuOpen = !mobileMenuOpen" class="md:hidden text-gray-300 hover:text-white focus:outline-none p-1 z-10">
+                <i data-lucide="menu" x-show="!mobileMenuOpen" class="w-6 h-6"></i>
+                <i data-lucide="x" x-show="mobileMenuOpen" class="w-6 h-6"></i>
+            </button>
+        </div>
+
+        <!-- Mobile Menu Nav -->
+        <div x-show="mobileMenuOpen" x-transition:enter="transition ease-out duration-200" x-transition:enter-start="opacity-0 -translate-y-2" x-transition:enter-end="opacity-100 translate-y-0" x-transition:leave="transition ease-in duration-150" x-transition:leave-start="opacity-100 translate-y-0" x-transition:leave-end="opacity-0 -translate-y-2" class="md:hidden bg-[#0d090c]/95 border-b border-burgundy-border/80 px-6 py-6 space-y-4">
+            <a @click="mobileMenuOpen = false" href="#about" class="block text-gray-200 hover:text-rose-gold font-medium py-1 text-center">About Me</a>
+            <a @click="mobileMenuOpen = false" href="#exploring" class="block text-gray-200 hover:text-rose-gold font-medium py-1 text-center">What I'm Learning</a>
+            <a @click="mobileMenuOpen = false" href="#connect" class="block text-gray-200 hover:text-rose-gold font-medium py-1 text-center">Connect</a>
+            <div class="pt-2">
+                <a @click="mobileMenuOpen = false" href="#connect" class="w-full justify-center px-4 py-2.5 text-sm font-semibold rounded-full bg-gradient-to-r from-burgundy to-burgundy-dark text-white flex items-center gap-2 border border-burgundy-light/40">
+                    <i data-lucide="sparkles" class="w-4 h-4"></i>
+                    <span>Follow Along</span>
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="relative z-10 max-w-6xl mx-auto px-6 space-y-32 py-12 md:py-20">
+
+        <!-- Hero Section -->
+        <section id="about" class="flex flex-col items-center text-center space-y-8 min-h-[70vh] justify-center">
+            
+            <!-- Circular Profile Image Frame (Centered Top) -->
+            <div class="relative group">
+                <!-- Glowing Aura -->
+                <div class="absolute -inset-2 bg-gradient-to-r from-burgundy via-rose-accent to-burgundy-dark rounded-full blur-xl opacity-70 group-hover:opacity-100 transition duration-700 animate-tilt"></div>
+                
+                <!-- Circle Frame Container -->
+                <div class="relative w-48 h-48 sm:w-56 sm:h-56 rounded-full bg-obsidian-card p-1.5 border-2 border-rose-gold/40 shadow-2xl overflow-hidden">
+                    <img src="JulianwxsHere.png" alt="Julian - @julianwxshere" class="w-full h-full object-cover object-center rounded-full group-hover:scale-105 transition-transform duration-500 ease-out" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=800&q=80';">
+                </div>
+            </div>
+
+            <!-- Hero Content -->
+            <div class="space-y-6 max-w-3xl">
+                <!-- Headline -->
+                <h1 class="font-heading text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight leading-[1.15]">
+                    Hey, I'm <span class="text-transparent bg-clip-text bg-gradient-to-r from-white via-rose-gold to-burgundy-light">Julian.</span> <br>
+                    I'm figuring things out <span class="italic font-light text-rose-gold/90">just like you.</span>
+                </h1>
+
+                <!-- Subheadline -->
+                <p class="text-gray-300 text-lg sm:text-xl font-light leading-relaxed max-w-2xl mx-auto">
+                    Hey, what's up! I'm Julian, 20 years old. I'm not here to sell you courses or manipulate you to buy things—I'm here to share my daily journey while learning, fxcking around, and figuring out things that we don't know about <strong class="text-white font-semibold">day trading, marketing, and human psychology</strong>. Follow along and stay tuned!
+                </p>
+
+                <!-- Action Buttons -->
+                <div class="flex flex-wrap items-center justify-center gap-4 pt-2">
+                    <a href="#connect" class="px-7 py-3.5 rounded-full bg-gradient-to-r from-burgundy via-burgundy-wine to-burgundy-dark hover:from-burgundy-light hover:to-burgundy text-white font-semibold shadow-[0_0_30px_rgba(128,0,32,0.4)] hover:shadow-[0_0_40px_rgba(226,115,150,0.6)] border border-burgundy-light/40 transition-all duration-300 flex items-center gap-3 transform hover:-translate-y-0.5">
+                        <i data-lucide="play-circle" class="w-5 h-5 text-rose-gold"></i>
+                        <span>Follow the Journey</span>
+                    </a>
+                    <a href="#exploring" class="px-7 py-3.5 rounded-full bg-obsidian-card/80 hover:bg-obsidian-border text-gray-200 hover:text-white font-medium border border-burgundy-border/80 transition-all duration-300 flex items-center gap-2 backdrop-blur-sm">
+                        <span>Read My Journal</span>
+                        <i data-lucide="arrow-down-right" class="w-4 h-4"></i>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- What I'm Exploring Right Now Section -->
+        <section id="exploring" class="space-y-12">
+            <!-- Section Title -->
+            <div class="flex flex-col md:flex-row md:items-end justify-between gap-6 border-b border-burgundy-border/50 pb-6">
+                <div>
+                    <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-burgundy/20 border border-burgundy/40 text-xs font-medium text-rose-gold mb-3">
+                        <i data-lucide="layers" class="w-3.5 h-3.5"></i>
+                        <span>What We're Figuring Out</span>
+                    </div>
+                    <h2 class="font-heading text-3xl sm:text-4xl font-bold tracking-tight">
+                        What I'm Exploring Right Now
+                    </h2>
+                </div>
+                <p class="text-gray-400 text-sm max-w-md">
+                    No fake expertise or guru talk—just the stuff I'm diving into headfirst, making mistakes, and testing out every day.
+                </p>
+            </div>
+
+            <!-- Pillars Grid -->
+            <div class="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+                <!-- Pillar 1: Trading -->
+                <div class="relative group rounded-3xl p-8 bg-gradient-to-b from-obsidian-card to-[#150a12] border border-burgundy-border/80 hover:border-rose-gold/40 transition-all duration-500 overflow-hidden shadow-lg">
+                    <div class="absolute -top-24 -right-24 w-48 h-48 bg-burgundy/20 rounded-full blur-2xl group-hover:bg-burgundy/40 transition-colors"></div>
+                    <div class="relative z-10 space-y-6">
+                        <div class="w-14 h-14 rounded-2xl bg-burgundy-dark/60 border border-burgundy-light/40 flex items-center justify-center text-rose-gold shadow-md">
+                            <i data-lucide="trending-up" class="w-7 h-7"></i>
+                        </div>
+                        <div class="space-y-2">
+                            <h3 class="font-heading text-2xl font-bold text-white">Day Trading</h3>
+                            <p class="text-rose-gold/80 text-xs font-mono">Charts, Risk &amp; Mindset</p>
+                        </div>
+                        <p class="text-gray-300 text-sm leading-relaxed">
+                            Learning how to read charts and execute trades from zero. Testing different strategies, dealing with losses, and figuring out what actually works without the fluff.
+                        </p>
+                        <ul class="space-y-2 text-xs text-gray-400 pt-2 border-t border-burgundy-border/40">
+                            <li class="flex items-center gap-2"><i data-lucide="check" class="w-3.5 h-3.5 text-burgundy-light"></i> Price action &amp; chart patterns</li>
+                            <li class="flex items-center gap-2"><i data-lucide="check" class="w-3.5 h-3.5 text-burgundy-light"></i> Testing strategies &amp; learning from mistakes</li>
+                            <li class="flex items-center gap-2"><i data-lucide="check" class="w-3.5 h-3.5 text-burgundy-light"></i> Managing risk &amp; keeping emotions in check</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Pillar 2: Consumer Psychology -->
+                <div class="relative group rounded-3xl p-8 bg-gradient-to-b from-obsidian-card to-[#150a12] border border-burgundy-border/80 hover:border-rose-gold/40 transition-all duration-500 overflow-hidden shadow-lg">
+                    <div class="absolute -top-24 -right-24 w-48 h-48 bg-burgundy/20 rounded-full blur-2xl group-hover:bg-burgundy/40 transition-colors"></div>
+                    <div class="relative z-10 space-y-6">
+                        <div class="w-14 h-14 rounded-2xl bg-burgundy-dark/60 border border-burgundy-light/40 flex items-center justify-center text-rose-gold shadow-md">
+                            <i data-lucide="brain" class="w-7 h-7 text-rose-gold"></i>
+                        </div>
+                        <div class="space-y-2">
+                            <h3 class="font-heading text-2xl font-bold text-white">Marketing &amp; Psychology</h3>
+                            <p class="text-rose-gold/80 text-xs font-mono">Human Behavior &amp; Attention</p>
+                        </div>
+                        <p class="text-gray-300 text-sm leading-relaxed">
+                            Understanding what makes people tick. I'm exploring why people pay attention, why they click, and how emotional triggers drive real action.
+                        </p>
+                        <ul class="space-y-2 text-xs text-gray-400 pt-2 border-t border-burgundy-border/40">
+                            <li class="flex items-center gap-2"><i data-lucide="check" class="w-3.5 h-3.5 text-burgundy-light"></i> Why people pay attention &amp; take action</li>
+                            <li class="flex items-center gap-2"><i data-lucide="check" class="w-3.5 h-3.5 text-burgundy-light"></i> Building real connections with an audience</li>
+                            <li class="flex items-center gap-2"><i data-lucide="check" class="w-3.5 h-3.5 text-burgundy-light"></i> Honest storytelling over pushy sales tactics</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Community & Social Links Section -->
+        <section id="connect" class="relative rounded-3xl p-8 sm:p-12 bg-gradient-to-br from-[#180a13] via-obsidian-card to-[#0e070b] border border-burgundy-border shadow-2xl overflow-hidden">
+            <div class="absolute top-0 right-0 w-96 h-96 bg-burgundy/20 rounded-full blur-3xl pointer-events-none"></div>
+
+            <div class="relative z-10 max-w-3xl mx-auto text-center space-y-8">
+                <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-burgundy/30 border border-burgundy-light/40 text-xs font-semibold text-rose-gold">
+                    <i data-lucide="globe" class="w-4 h-4"></i>
+                    <span>Connect &amp; Follow</span>
+                </div>
+
+                <h2 class="font-heading text-3xl sm:text-5xl font-extrabold tracking-tight text-white">
+                    Join Me On The <span class="text-transparent bg-clip-text bg-gradient-to-r from-rose-gold to-burgundy-light">Journey</span>
+                </h2>
+
+                <p class="text-gray-300 text-base sm:text-lg leading-relaxed">
+                    I post honest daily updates, real wins, stupid mistakes, and raw lessons as I learn on TikTok and Instagram. Drop by and say what's up!
+                </p>
+
+                <!-- Social Action Cards -->
+                <div class="grid sm:grid-cols-2 gap-4 pt-4 text-left">
+                    <!-- TikTok Card -->
+                    <a href="https://tiktok.com/@julianwxshere" target="_blank" rel="noopener" class="group p-6 rounded-2xl bg-obsidian-card/80 border border-burgundy-border/70 hover:border-burgundy-light transition-all duration-300 flex items-center justify-between hover:-translate-y-1">
+                        <div class="flex items-center gap-4">
+                            <div class="w-12 h-12 rounded-xl bg-burgundy/30 flex items-center justify-center text-rose-gold group-hover:bg-burgundy group-hover:text-white transition-colors">
+                                <svg class="w-6 h-6 fill-current" viewBox="0 0 24 24"><path d="M19.589 6.686a4.793 4.793 0 0 1-3.77-4.245V2h-3.445v13.672a2.896 2.896 0 0 1-2.9 2.836 2.893 2.893 0 0 1-2.892-2.896 2.893 2.893 0 0 1 2.892-2.896c.28 0 .548.04.802.115V9.32a6.34 6.34 0 0 0-.802-.05 6.338 6.338 0 0 0-6.333 6.338 6.338 6.338 0 0 0 6.333 6.338 6.338 6.338 0 0 0 6.333-6.338V8.72a8.212 8.212 0 0 0 4.776 1.517V6.786a4.832 4.832 0 0 1-1.004-.1z"/></svg>
+                            </div>
+                            <div>
+                                <div class="font-heading font-bold text-lg text-white">TikTok</div>
+                                <div class="text-xs text-gray-400 font-mono">@julianwxshere</div>
+                            </div>
+                        </div>
+                        <i data-lucide="external-link" class="w-5 h-5 text-gray-500 group-hover:text-rose-gold transition-colors"></i>
+                    </a>
+
+                    <!-- Instagram Card -->
+                    <a href="https://instagram.com/julianwxshere" target="_blank" rel="noopener" class="group p-6 rounded-2xl bg-obsidian-card/80 border border-burgundy-border/70 hover:border-burgundy-light transition-all duration-300 flex items-center justify-between hover:-translate-y-1">
+                        <div class="flex items-center gap-4">
+                            <div class="w-12 h-12 rounded-xl bg-burgundy/30 flex items-center justify-center text-rose-gold group-hover:bg-burgundy group-hover:text-white transition-colors">
+                                <svg class="w-6 h-6 fill-current" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+                            </div>
+                            <div>
+                                <div class="font-heading font-bold text-lg text-white">Instagram</div>
+                                <div class="text-xs text-gray-400 font-mono">@julianwxshere</div>
+                            </div>
+                        </div>
+                        <i data-lucide="external-link" class="w-5 h-5 text-gray-500 group-hover:text-rose-gold transition-colors"></i>
+                    </a>
+                </div>
+
+                <div class="text-xs text-gray-500 pt-4 font-mono">
+                    Direct messages open for fellow learners and creators.
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="relative z-10 border-t border-burgundy-border/40 py-10 bg-[#070507]">
+        <div class="max-w-6xl mx-auto px-6 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-gray-400">
+            <div class="flex items-center gap-2">
+                <span class="w-2 h-2 rounded-full bg-burgundy-light"></span>
+                <span>Julian // @julianwxshere</span>
+            </div>
+            <div>
+                Built with curiosity &amp; passion. Let's learn together.
+            </div>
+            <div class="font-mono text-[11px] text-gray-400">
+                &copy; <span id="year"></span> Julian. All rights reserved.
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="script.js"></script>
+</body>
+</html>

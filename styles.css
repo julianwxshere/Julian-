@@ -1,0 +1,79 @@
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+    width: 8px;
+}
+::-webkit-scrollbar-track {
+    background: #0a0709;
+}
+::-webkit-scrollbar-thumb {
+    background: #2a1a24;
+    border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+    background: #800020;
+}
+
+/* Glassmorphism Utilities */
+.glass-panel {
+    background: rgba(18, 13, 17, 0.7);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid rgba(128, 0, 32, 0.25);
+}
+
+/* Slow Glow Animation */
+@keyframes pulseSlow {
+    0%, 100% {
+        opacity: 0.3;
+        transform: scale(1);
+    }
+    50% {
+        opacity: 0.6;
+        transform: scale(1.08);
+    }
+}
+.animate-pulse-slow {
+    animation: pulseSlow 8s ease-in-out infinite;
+}
+
+/* Tilt Keyframe Effect */
+@keyframes tilt {
+    0%, 100% {
+        transform: rotate(0deg);
+    }
+    25% {
+        transform: rotate(1deg);
+    }
+    75% {
+        transform: rotate(-1deg);
+    }
+}
+.animate-tilt {
+    animation: tilt 10s infinite linear;
+}
+
+/* Floating particles CSS styling */
+.particle {
+    position: absolute;
+    border-radius: 50%;
+    background: rgba(226, 115, 150, 0.3);
+    pointer-events: none;
+    animation: floatParticle linear infinite;
+}
+
+@keyframes floatParticle {
+    0% {
+        transform: translateY(0) translateX(0);
+        opacity: 0;
+    }
+    20% {
+        opacity: 0.5;
+    }
+    80% {
+        opacity: 0.5;
+    }
+    100% {
+        transform: translateY(-100vh) translateX(50px);
+        opacity: 0;
+    }
+}
